@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9 - JS Revision</title>
+    <style>
+
+    </style>
+</head>
+
+<body style="background-color: black; color: whitesmoke;">
+    <p style="color: wheat;" id="script1">Test 1</p>
+    <ul id="ul" class="day9">
+        <li class="lists">Activity</li>
+        <li id="remove" class="lists">1</li>
+        <li class="lists">Done</li>
+    </ul>
+    <div id="anotherlist">
+        <li class="anotherli">A</li>
+        <li class="anotherli">B</li>
+        <li class="anotherli">C</li>
+    </div>
+    <section>
+        <h1>TEST - activity 4</h1>
+        <img class="test4" title="Script 4" id="image" src="" alt="AT WRITING">
+        <button style="background-color: green;" id="clickButton">CLICK</button>
+        <p id="secondP"></p>
+    </section>
+    <div id="bordered" style="background-color: wheat; color: black; border: 12px solid black;">
+        <h1>X</h1>
+        <h1>Y</h1>
+        <h1>Z</h1>
+    </div>
+
+    <script>
+        //after dom loaded then js will run
+        const script1 = document.getElementById('script1');
+        script1.textContent = 'SCRIPT 1 DONE'
+
+        //activity 1
+        const listsClass = document.getElementsByClassName('lists');
+        for (let i = 0; i < listsClass.length; i++) {
+            listsClass[i].style.backgroundColor = 'red';
+        }
+
+        //script 2
+        const div = document.createElement('div');
+        div.textContent = 'Script 2 - a div Appended ';
+        document.body.append(div);
+
+        //activity 2
+        const newListItem = document.createElement('li');
+        newListItem.textContent = 'NEW LI';
+        const ul = document.querySelector('#ul');
+        ul.append(newListItem);
+
+        //script 3
+        const remove = document.getElementById('remove');
+        ul.removeChild(remove);
+
+        //activity 3
+        //activity 3
+        const anotherList = document.getElementById('anotherlist');
+        const lastChild = anotherList.querySelector('li:last-child'); //last child of element
+        anotherList.removeChild(lastChild);
+        //script 4
+        const img = document.querySelector('#image');
+        img.setAttribute('title', 'NEW ATTR'); //setting attribute
+        img.removeAttribute('class'); //removing attribute
+        ul.classList.toggle('day9'); //remove if present, otherwise add
+        const p = document.getElementById('secondP');
+
+        //activity 5
+        const clickButton = document.getElementById('clickButton');
+        clickButton.addEventListener('click', function () {
+            p.textContent = 'LATEST CONTENT';
+        });
+
+        const borderedDiv = document.getElementById('bordered');
+        borderedDiv.addEventListener('mouseover', function () {
+            borderedDiv.style.borderColor = 'red';
+
+        });
+
+        //remove event listener later
+        //clickButton.removeEventListener('click', function(){...});
+
+        //getting,checking attribute
+        const attr = img.getAttribute('title');
+        console.log(attr);
+        console.log(img.hasAttribute('class')) //false, as removed earlierly
+    </script>
+</body>
+
+</html>
