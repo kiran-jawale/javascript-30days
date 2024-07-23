@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9 - JS Revision</title>
+</head>
+
+<body style="background-color: black; display:flex; flex-direction: column; 
+align-items: center; gap: 10px; color: whitesmoke;">
+    <button id="script1">
+        SCRIPT 1
+    </button>
+
+    <p id="para1">PARA 1</p>
+
+    <div id="act1" style="height: 120px; width: 120px; border: 2px dashed white;">
+        <p style="font-size: 1px;">DIV1 - IMG1</p>
+        <img id="img1" style="height:100px ; width: 100px;" src="./Cartooon.png" alt="">
+    </div>
+
+    <div id="script2" style="background-color: gray; color: white; 
+    padding: 2px; border: 2px solid yellow; height: 100px; width: 100px;">SCRIPT 2</div>
+
+    <div id="script3" style="background-color: black;">
+        <input type="text" id="input3">
+        <p id="para3">SCRIPT 3</p>
+    </div>
+    <form style="color: wheat;" id="form4">
+        <p id="para4" >SCRIPT 4</p>
+        <select  id="select4">
+            <option value="1">ONE</option>
+            <option value="2">TWO</option>
+            <option value="3">THREE</option>
+        </select>
+        <input value="SUBMIT" type="submit">
+    </form>
+
+    <div id="div5">
+        <ul id="list5">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <button id="buttonChopra">SCRIPT 5</button>
+    </div>
+    <script>
+        //script 1
+        const button1 = document.getElementById('script1');
+        const para1 = document.querySelector('#para1');
+
+        button1.addEventListener('click', function (e) {
+            e.preventDefault();
+            console.log('BUTTON 1 Clicked');
+            para1.textContent = 'BUTTON 1 Clicked';
+        });
+
+        const img1 = document.getElementById('img1');
+        const div1 = document.querySelector('#act1');
+        let imgVisible = img1.style.display === 'block';
+
+        div1.addEventListener('dblclick', function (e) {
+            e.preventDefault();
+            console.log('script 2');
+            imgVisible = !imgVisible;
+            img1.style.display = imgVisible ? 'none' : 'block'
+        });
+
+        //script 2
+        script2 = document.getElementById('script2');
+        script2.addEventListener('mouseover', function (e) {
+            e.preventDefault();
+            this.style.backgroundColor = 'white';
+            this.style.color = 'black';
+        });
+
+        script2.addEventListener('mouseout', function (e) {
+            e.preventDefault();
+            this.style.backgroundColor = 'gray';
+            this.style.color = 'white'
+        });
+
+        //script 3
+        const input3 = document.querySelector('#input3');
+        const para3 = document.getElementById('para3');
+        input3.addEventListener('keydown', function (e) {
+            console.log('Key pressed: ', e.key);
+        });
+        input3.addEventListener('keyup', function (e) {
+            para3.textContent = e.target.value;
+
+        });
+
+        //script 4
+        form4 = document.getElementById('form4');
+        form4.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(form4);
+            console.log(formData);
+        });
+
+        const select4 = document.querySelector('#select4');
+        const para4 = document.getElementById('para4')
+        select4.addEventListener('change', function(e) {
+            e.preventDefault()
+            para4.textContent = e.target.value;
+        });
+
+        //script 5 - event delegation
+        const list = document.querySelector('#list5');
+        list.addEventListener('click', function(e) {
+           if( e.target.tagName === 'LI'){
+            console.log('Click from ul: ', e.target.textContent);
+           }
+        });
+
+        div5 = document.getElementById('div5');
+        div5.addEventListener('click',function(e) {
+            if(e.target.tagName === 'BUTTON' || e.target.tagName === 'LI') {
+            console.log('Click from div', e.target.textContent)}
+        })
+
+    </script>
+</body>
+
+</html>
