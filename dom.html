@@ -33,6 +33,9 @@
         <h1>Y</h1>
         <h1>Z</h1>
     </div>
+    <div id="box" style="height: 100px; width: 100px; background-color: white;">
+        TOUCH EVENT
+    </div>
 
     <script>
         //after dom loaded then js will run
@@ -91,6 +94,16 @@
         const attr = img.getAttribute('title');
         console.log(attr);
         console.log(img.hasAttribute('class')) //false, as removed earlierly
+
+        //touch events
+        const box = document.querySelector('#box');
+        box.addEventListener('touchstart', function(e) {
+            this.style.backgroundColor = 'red';
+        });
+
+        box.addEventListener('tochend', function(e) {
+            this.style.backgroundColor = 'orange'
+        })
     </script>
 </body>
 
