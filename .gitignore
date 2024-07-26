@@ -33,3 +33,6 @@ Thumbs.db
 *.log
 *.tmp
 *.bak
+
+# Ignore all image files with .jpg, .png, .gif, etc. extensions
+*.{jpg,png,gif,bmp,svg}
