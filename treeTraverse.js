@@ -4,24 +4,21 @@ function traverseTree(node, option = "inorder") {
       inorder: [traverseLeft, logNode, traverseRight],
       postorder: [traverseLeft, traverseRight, logNode],
     };
-  
     if (!sequences[option]) {
       console.log("Invalid option");
       return;
     }
-  
     const sequence = sequences[option];
   
     function traverse(node) {
       if (node === null) {
         return;
       }
-  
       for (const func of sequence) {
         func(node);
       }
     }
-  
+
     traverse(node);
   }
   
@@ -58,5 +55,8 @@ function traverseTree(node, option = "inorder") {
   root.left.right = node5;
   node3.left = node6;
   node3.right = node7;
-  
+  node3.left.left = new Node('8')
+  node3.right.left = new Node('9')
+  node3.right.right = new Node('10')
+
   traverseTree(root, "inorder");
