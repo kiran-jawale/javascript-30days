@@ -5,7 +5,7 @@
 class Node: #class Node for element
     def __init__(self, value): #to enter a value
         self.value = value #value of node
-        self.head = None #initially nextNode null
+        self.next = None #initially pointer null
 
 class LinkedList: #class LinkedList 
     def __init__(self): #constuctor to instantiate
@@ -68,14 +68,14 @@ class Stack:
         self.items.append(item) #into stack
 
     def pop(self): #return and remove the top item
-        if self.items.is_empty(): #if empty stack
+        if self.is_empty(): #if empty stack
             print('Stack is empty !')
             return None #return empty value
         return self.items.pop() #remove return top item
         
     def peek(self): #return, not removal of top item
-        if not self.items.is_empty(): #if not empty stack
-            return self.items.peek[-1] #then return last item
+        if not self.is_empty(): #if not empty stack
+            return self.items[-1] #then return last item
         return None #if empty then return empty value
 
 stack = Stack()
