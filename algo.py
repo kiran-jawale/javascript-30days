@@ -243,6 +243,3 @@ weights = [2, 3, 4, 5]
 values = [10, 20, 30, 40]
 capacity = 10
 print(knapsack(weights, values, capacity))
-
-            
-
