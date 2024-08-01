@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Da 20 - localStorage/sessionStorage</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .form-container {
+            border: 2px solid grey;
+            padding: 10px;
+            width: 250px;
+            height: 200px;
+        }
+
+        .saved-data {
+            background-color: black;
+            color: wheat;
+            padding: 10px;
+            width: 250px;
+            height: 200px;
+        }
+
+        input[type="submit"] {
+            border: 2px solid green;
+        }
+    </style>
+</head>
+
+<body style="background-color: rgb(26, 26, 26); min-height:screen; max-width: 50%; color:whitesmoke;">
+    <div
+        style="border: 2px dashed gray; padding: 2px ; height: 200px; display: flex; flex-direction: column; gap: 3px; padding: 10px;">
+        <input type="text" name="" id="string-input" placeholder="Enter a String">
+        <button onclick="saveString()">SAVE string.</button>
+        <button onclick="retrieveString()">RETRIEVE string.</button>
+        <button onclick="saveObj()">SAVE Obj.</button>
+        <button onclick="retrieveObj()">RETRIEVE Obj.</button>
+        <button onclick="removeString()">REMOVE string.</button>
+        <button onclick="removeObj()">REMOVE Obj.</button>
+        <button onclick="saveAll()">SAVE All Global stuff.</button>
+        <button onclick="retrieveAll()">RETRIEVE All Global stuff.</button>
+        <button onclick="removeAll()">REMOVE All Global stuf.</button>
+    </div>
+
+    <div class="grid-container">
+        <form id="userForm" class="form-container">
+            <label for="name">Name :</label>
+            <input type="text" name="name" id="name" placeholder="Enter Name">
+            <label for="email">Email :</label>
+            <input type="text" name="email" id="email" placeholder="Enter email">
+            <input type="submit"></input>
+        </form>
+        <div id="savedData" class="saved-data"></div>
+        <form id="sessionForm" class="form-container">
+            <label for="name">Name :</label>
+            <input type="text" name="name" id="sesName" placeholder="Enter Name">
+            <label for="email">Email :</label>
+            <input type="text" name="email" id="sesEmail" placeholder="Enter email">
+            <input type="submit"></input>
+        </form>
+        <div id="sessionData" class="saved-data"></div>
+
+    </div>
+    <script>
+        //functions are fully hoisted
+        function saveString() {
+            saveStringLocal();
+            saveStringSession();
+        }
+        function retrieveString() {
+            retrieveStringLocal();
+            retrieveStringSession();
+        }
+        function removeString() {
+            removeStringLocal();
+            removeStringSession();
+        }
+        function saveObj() {
+            saveObjLocal();
+            saveObjSession();
+        }
+        function retrieveObj() {
+            retrieveObjLocal();
+            retrieveObjSession();
+        }
+        function removeObj() {
+            removeObjLocal();
+            removeObjSession();
+        }
+
+        //task 1
+        function saveStringLocal() {
+            const value = document.getElementById('string-input').value;
+            localStorage.setItem('myString', value);
+            console.log('String saved to localStorage :', value)
+        }
+        function retrieveStringLocal() {
+            const retrievedValue = localStorage.getItem('myString');
+            if (retrieveString) {
+                console.log('Retrieved from localStorage:', retrievedValue);
+            } else console.log('No str found !')
+        }
+        //task 4
+        function removeStringLocal() {
+            const key = 'myString';
+            const promise = new Promise(function (res, rej) {
+                localStorage.removeItem(key);
+                res(key)
+            }).then((key) => console.log('String removed :', key))
+        }
+        const obj = {
+            name: 'Kumar',
+            age: 20,
+            getDetails() {
+                console.log(name, age)
+            }
+        }
+        //task 2
+        function saveObjLocal() {
+
+            const objString = JSON.stringify(obj); //function won't convert nor saved to localStorage
+            localStorage.setItem('myObj', objString);
+            console.log('Object saved to localStorage', objString);
+        }
+        function retrieveObjLocal() {
+            const retrievedObjString = localStorage.getItem('myObj');
+            if (retrievedObjString) {
+                console.log('Object retrieved from localStorage:', retrievedObjString)
+            } else console.log('No obj found');
+        }
+
+        //task 3
+        const userForm = document.getElementById('userForm');
+        const savedDataDiv = document.querySelector('#savedData')
+
+        window.addEventListener('load', () => {
+            const userData = localStorage.getItem('userData')
+            if (userData) {
+                userObj = JSON.parse(userData)
+                savedDataDiv.textContent = `Saved Data: 
+            ${userObj.name}
+            ${userObj.email}`
+            }
+        })
+
+        userForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            localStorage.setItem('userData', JSON.stringify({ name, email }));
+            savedDataDiv.innerHTML = `Saved data:
+            ${name}
+            ${email}`
+        })
+
+        //task 4
+        async function removeObject() {
+            const key = 'myObj';
+            await localStorage.removeItem(key);
+            return key
+        }
+        function removeObjLocal() {
+            const promise2 = new Promise(function (res, rej) {
+
+                res(removeObject())
+            }).then((result) => console.log('Removed: ', result))
+        }
+
+        //task 5
+        function saveStringSession() {
+            const value = document.getElementById('string-input').value;
+            sessionStorage.setItem('myString', value)
+            console.log('String saved to sessionStorage:', value);
+        }
+        function retrieveStringSession() {
+            const retrievedString = sessionStorage.getItem('myString')
+            if (retrievedString) {
+                console.log('Retrieved from sessionStorage', retrievedString)
+            } else console.log('Str not found')
+        }
+
+        //task 6
+        async function saveObjSession() {
+            sessionStorage.setItem('myObj', JSON.stringify(obj))
+            console.log('Saved to sessionStorage', JSON.stringify(obj))
+        }
+        async function retrieveObjSession() {
+            const retrieved = sessionStorage.getItem('myObj')
+            if (retrieved) {
+                const retrievedObj = JSON.parse(retrieved)
+                console.log('Retrieved from sessionStorage', retrievedObj)
+            } else console.log('No Obj Found')
+        }
+
+        //task7
+        const sessionForm = document.getElementById('sessionForm');
+        const savedDataSessionDiv = document.querySelector('#sessionData');
+
+        window.addEventListener('load', () => {
+            const userData = sessionStorage.getItem('userDataSession');
+            if (userData) {
+                const userObj = JSON.parse(userData);
+                savedDataSessionDiv.innerHTML = `Saved data: Name - ${userObj.name}, Email - ${userObj.email}`;
+            }
+        })
+
+        sessionForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const name = document.getElementById('sesName').value;
+            const email = document.getElementById('sesEmail').value
+            const userObj = JSON.stringify({ name, email })
+            sessionStorage.setItem('sesObj', userObj)
+            savedDataSessionDiv.innerHTML = `Saved data: Name - ${userObj.name}, Email - ${userObj.email}`;
+        })
+
+        //task 8
+        function removeStringSession() {
+            const key = 'myString'
+            sessionStorage.removeItem(key)
+        }
+        function removeObjSession() {
+            const key = 'myObj'
+            sessionStorage.removeItem(key)
+        }
+
+        //task 9
+        const elem = document.getElementById('userForm');
+        const elemData = {
+            html: elem.outerHTML,
+            attributes: Array.from(elem.attributes).reduce((acc, attr) => {
+                acc[attr.name] = attr.value;
+                return acc;
+            }, {}),
+            textContent: elem.textContent
+        };
+
+        const json = JSON.stringify(elemData);
+        const globalObj = {
+            number: 10.5,
+            str: 'string',
+            bool: true,
+            symbol: "globalValue",
+            date: new Date().getDate().toString(),
+            time: new Date().getTime().toString(),
+            bigInt: '1000000n',
+            arr: [10, 10.5, 'str', JSON.stringify(elemData)],
+            obj: { name: this.symbol, key: 'value' },
+            func() { }
+        }
+
+        function saveAll() {
+            for (let key in globalObj) {
+                if (typeof key === 'function') continue;
+                localStorage.setItem(key, JSON.stringify(globalObj[key]));
+                sessionStorage.setItem(key, JSON.stringify(globalObj[key]));
+                console.log(JSON.stringify(globalObj[key]))
+            }
+            console.log('Done dona done')
+        }
+        function removeAll() {
+            for (let key in globalObj) {
+                localStorage.removeItem(key)
+                console.log(key)
+            }
+            console.log('Cut cuta cut')
+        }
+        function retrieveAll() {
+            for (let key in globalObj) {
+                console.log('localStorage', localStorage.getItem(key), 'sessionStorage', sessionStorage.getItem(key))
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
