@@ -1,0 +1,52 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #202020;
+    color: whitesmoke;
+}
+
+#search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 5px 0 0 5px;
+    width: 300px;
+    box-shadow: 0 0 10px rgba(121, 121, 121, 0.728);
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #18711b;
+    color: whitesmoke;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+#movie-results {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #333;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.movie-card{
+    padding: 10px;
+    margin: 10px;
+    border: 2px dashed whitesmoke;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    align-items: center;
+}
