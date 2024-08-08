@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./weather.css">
+</head>
+
+<body>
+
+    <div>
+        <input type="text" id="city-input" placeholder="Enter city...">
+        <button id="search-button">Search</button>
+    </div>
+    <div id="weather-container">
+        <h1>Weather in <span id="city-name"></span></h1>
+        <p>Temperature: <span id="temperature"></span></p>
+        <p>Condition: <span id="condition"></span></p>
+        <img id="weather-icon" src="" alt="Weather icon">
+    </div>
+    <h2>5-Day Forecast</h2>
+    <div id="forecast">
+        
+        <div class="forecast-day" id="day1">
+            <p>Day 1</p>
+            <p class="day-temp" id="day1-temp"></p>
+            <p class="day-condition" id="day1-condition"></p>
+            <img class="day-icon" id="day1-icon" src="" alt="Weather icon">
+        </div>
+        <div class="forecast-day" id="day2">
+            <p>Day 2</p>
+            <p class="day-temp" id="day2-temp"></p>
+            <p class="day-condition" id="day2-condition"></p>
+            <img class="day-icon" id="day2-icon" src="" alt="Weather icon">
+        </div>
+        <div class="forecast-day" id="day3">
+            <p>Day 3</p>
+            <p class="day-temp" id="day3-temp"></p>
+            <p class="day-condition" id="day3-condition"></p>
+            <img class="day-icon" id="day3-icon" src="" alt="Weather icon">
+        </div>
+        <div class="forecast-day" id="day4">
+            <p>Day 4</p>
+            <p class="day-temp" id="day4-temp"></p>
+            <p class="day-condition" id="day4-condition"></p>
+            <img class="day-icon" id="day4-icon" src="" alt="Weather icon">
+        </div>
+        <div class="forecast-day" id="day5">
+            <p>Day 5</p>
+            <p class="day-temp" id="day5-temp"></p>
+            <p class="day-condition" id="day5-condition"></p>
+            <img class="day-icon" id="day5-icon" src="" alt="Weather icon">
+        </div>
+    </div>
+    <p id="error-message"></p>
+</div>
+
+    <script src="./weather.js"></script>
+</body>
+
+</html>
