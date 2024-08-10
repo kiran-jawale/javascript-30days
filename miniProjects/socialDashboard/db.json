@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "name": "Product 1",
+      "price": 19.99,
+      "description": "A great product.",
+      "imageUrl": "images/product1.jpeg" 
+    },
+    {
+      "id": 2,
+      "name": "Product 2",
+      "price": 29.99,
+      "description": "Another amazing product.",
+      "imageUrl": "images/product2.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "price": 14.99,
+      "description": "A budget-friendly choice.",
+      "imageUrl": "images/product3.png"
+    }
+  ]
