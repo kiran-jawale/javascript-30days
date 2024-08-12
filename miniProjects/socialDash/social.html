@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Social Media Dashboard</title>
+    <link rel="stylesheet" href="./social.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Social Media Dashboard</h1>
+        <div id="login-form" class="login-form">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="handleLogin()">Login</button>
+        </div>
+        <div id="post-form" class="post-form" style="display: none;">
+            <h2>Create Post</h2>
+            <input type="text" id="post-text" placeholder="Write your post...">
+            <input type="file" id="post-image">
+            <button onclick="createPost()">Post</button>
+            <button onclick="handleLogout()">Logout</button>
+        </div>
+        <div id="posts-container">
+            <p id="heading">Your Posts</p>
+            </div>
+    </div>
+    <script src="./social.js"></script>
+</body>
+</html>
