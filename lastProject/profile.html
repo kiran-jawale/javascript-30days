@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Social Media Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Profile</h1>
+            <button id="logoutBtn">Logout</button>
+        </header>
+        <div id="userProfile">
+            <h2>Your Profile</h2>
+            <p><strong>Username:</strong> <span id="profileUsername"></span></p>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+            <img id="myProfilePicture" src="" alt="Profile Picture">
+        </div>
+        <div id="postFormContainer">
+            <h2>Create a New Post</h2>
+            <form id="postForm">
+                <input type="text" id="postTitle" placeholder="Post Title" required>
+                <textarea id="postDescription" placeholder="What's on your mind?" required></textarea>
+                <input type="file" id="postImage">
+                <button type="submit">Create Post</button>
+            </form>
+        </div>
+        <div id="profilePosts">
+            <h2>Your Posts</h2>
+            <!-- Posts will be dynamically injected here -->
+        </div>
+        <div id="notifications">
+            <h2>Notifications</h2>
+            <ul id="notificationsList">
+                <!-- Notifications will be dynamically injected here -->
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
